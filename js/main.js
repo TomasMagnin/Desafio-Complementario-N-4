@@ -150,14 +150,27 @@ let usx = document.getElementById("formNav");
 let usuario;                                                                    // Creamos la variable usuario
 let usuarioStorage = sessionStorage.getItem("usuario");                         // Traemos del sessionStorage el contenido de la variable
 
-if(usuarioStorage){                                                             // Si la variable tiene contenido.
+
+
+
+let newUser = () => {
+    usuario = prompt("Ingrese su nombre");                                      // Ingresamos por consola el nombre y se le asigna a la variable usuario.
+    sessionStorage.setItem("usuario", usuario);                                 // Guardamos en sessionStorage el contenido de la variable usuario.
+    alert("Bienvenido es tu primera Vez");
+};
+
+alert(`Bienvenido ${usuarioStorage}`) || newUser();
+
+
+/* if(usuarioStorage){                                                             // Si la variable tiene contenido.
     let mensaje = `Bienvenido ${usuarioStorage}`;                               // Entoces sale el cartel de saludo
     alert(mensaje);
+
 }else{
     usuario = prompt("Ingrese su nombre");                                      // Ingresamos por consola el nombre y se le asigna a la variable usuario.
     sessionStorage.setItem("usuario", usuario);                                 // Guardamos en sessionStorage el contenido de la variable usuario.
     alert("Bienvenido es tu primera Vez");                                      // Imprimismo el contenido.
-}
+} */
 
 
 
@@ -224,8 +237,11 @@ const totalCarrit = document.getElementById("precioTotal");                     
 /* ---------- Local Storage del Carrito ---------- */
 
 document.addEventListener(`DOMContentLoaded`, () => {                           // Llamamos al evento cuando se carga el documento.
-    if(localStorage.getItem(`carrito`)){                                        // Si en el local Sorage se encuentra el objeto carrito.    
-        carrito = JSON.parse(localStorage.getItem(`carrito`)) || [];                 // Entonces parseamos esa info, la convertimos a JS y la
+    /* if(localStorage.getItem(`carrito`)){                                        // Si en el local Sorage se encuentra el objeto carrito.    
+        carrito = JSON.parse(localStorage.getItem(`carrito`))                   // Entonces parseamos esa info, la convertimos a JS y la
         carritoUpload()
     }
+     */
+    localStorage.getItem(`carrito`) ? carrito = JSON.parse(localStorage.getItem(`carrito`)) : [];
+    carritoUpload()
 })
